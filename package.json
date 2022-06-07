@@ -1,12 +1,12 @@
 {
-    "name": "experience",
+    "name": "server",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "start": "node back/server",
-        "server": "nodemon back/server",
+        "start": "node server/server",
+        "server": "nodemon server/server",
         "client": "npm run dev --prefix front",
         "dev": "concurrently  \"npm run server\" \"npm run client\""
     },
