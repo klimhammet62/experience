@@ -1,4 +1,5 @@
 import asyncHandler from 'express-async-handler';
+import { generateTokens, saveToken } from '../../helpers/generateTokens.js';
 import { User } from '../../models/userModel.js'
 
 // @descr Create account
@@ -15,11 +16,13 @@ export const registerUser = asyncHandler(async (req, res) => {
         throw new Error('Пользователь уже зарегистрирован')
     }
 
-    const user = await User.create({ 
-        name, 
-        email, 
-        password 
+    const user = await User.create({
+        name,
+        email,
+        password
     })
 
-    res.json(user)
+    const tokens = generateTokens(user._Id)
+    
+    res.json({ user, tokens, saveToken })
 })
